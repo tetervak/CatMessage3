@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Cat Message 3</string>
+    <string name="about">About</string>
+    <string name="message_label">Received message</string>
+    <string name="get_message">Get Message</string>
+    <string-array name="cat_messages">
+        <item>Purr</item>
+        <item>Mew</item>
+        <item>Hiss</item>
+    </string-array>
+    <string name="undefined">Undefined</string>
+    <string name="select_message">Select a message</string>
+    <string name="author">Alex Tetervak, Sheridan College, 2019</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+</resources>

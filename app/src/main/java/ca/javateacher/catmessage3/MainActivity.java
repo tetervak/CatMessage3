@@ -1,0 +1,85 @@
+/* Alex Tetervak, Sheridan College, Ontario */
+package ca.javateacher.catmessage3;
+
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.TextView;
+
+public class MainActivity extends AppCompatActivity implements InputFragment.InputListener {
+
+  private static final String ABOUT_FRAGMENT = "aboutFragment";
+  private static final String INPUT_FRAGMENT = "inputFragment";
+
+  // to save the instance state
+  private static final String MESSAGE = "message";
+
+  private String mMessageText;
+  private TextView mMessageView;
+
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_main);
+    Toolbar toolbar = findViewById(R.id.toolbar);
+    setSupportActionBar(toolbar);
+
+    Button getButton = findViewById(R.id.get_button);
+    getButton.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        InputFragment inputFragment = InputFragment.newInstance();
+        inputFragment.show(getSupportFragmentManager(), INPUT_FRAGMENT);
+      }
+    });
+
+    mMessageView = findViewById(R.id.message_text);
+
+    if(savedInstanceState != null){
+      mMessageText = savedInstanceState.getString(MESSAGE);
+      mMessageView.setText(mMessageText);
+    }else{
+      mMessageText = getString(R.string.undefined);
+    }
+  }
+
+  @Override
+  protected void onSaveInstanceState(Bundle outState) {
+    super.onSaveInstanceState(outState);
+    outState.putString(MESSAGE, mMessageText);
+  }
+
+  @Override
+  public boolean onCreateOptionsMenu(Menu menu) {
+    // Inflate the menu; this adds items to the action bar if it is present.
+    getMenuInflater().inflate(R.menu.menu_main, menu);
+    return true;
+  }
+
+  @Override
+  public boolean onOptionsItemSelected(MenuItem item) {
+    // Handle action bar item clicks here. The action bar will
+    // automatically handle clicks on the Home/Up button, so long
+    // as you specify a parent activity in AndroidManifest.xml.
+    int id = item.getItemId();
+
+    //noinspection SimplifiableIfStatement
+    if (id == R.id.about) {
+      AboutFragment aboutFragment = AboutFragment.newInstance();
+      aboutFragment.show(getSupportFragmentManager(), ABOUT_FRAGMENT);
+      return true;
+    }
+
+    return super.onOptionsItemSelected(item);
+  }
+
+  @Override
+  public void updateMessage(String message) {
+    mMessageText = message;
+    mMessageView.setText(message);
+  }
+}
