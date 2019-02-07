@@ -11,9 +11,6 @@ import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class InputFragment extends DialogFragment {
 
   // the index of the selected message
@@ -60,22 +57,21 @@ public class InputFragment extends DialogFragment {
     builder.setTitle(R.string.select_message);
     builder.setSingleChoiceItems(R.array.cat_messages,
         mMessageInd, new DialogInterface.OnClickListener() {
-      @Override
-      public void onClick(DialogInterface dialog, int which) {
-        mMessageInd = which;
-      }
-    });
+          @Override
+          public void onClick(DialogInterface dialog, int which) {
+            mMessageInd = which;
+          }
+        });
 
     builder.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-          @Override
-          public void onClick(DialogInterface dialog, int button) {
-            if (mInputListener != null) {
-              String message = getResources().getStringArray(R.array.cat_messages)[mMessageInd];
-              mInputListener.updateMessage(message);
-            }
-          }
+      @Override
+      public void onClick(DialogInterface dialog, int button) {
+        if (mInputListener != null) {
+          String message = getResources().getStringArray(R.array.cat_messages)[mMessageInd];
+          mInputListener.updateMessage(message);
         }
-    );
+      }
+    });
 
     builder.setNegativeButton(android.R.string.no, null);
     return builder.create(); // return the AlertDialog
