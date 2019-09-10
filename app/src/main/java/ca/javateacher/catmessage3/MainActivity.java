@@ -29,12 +29,9 @@ public class MainActivity extends AppCompatActivity implements InputFragment.Inp
     setSupportActionBar(toolbar);
 
     Button getButton = findViewById(R.id.get_button);
-    getButton.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        InputFragment inputFragment = InputFragment.newInstance();
-        inputFragment.show(getSupportFragmentManager(), INPUT_FRAGMENT);
-      }
+    getButton.setOnClickListener(v -> {
+      InputFragment inputFragment = InputFragment.newInstance();
+      inputFragment.show(getSupportFragmentManager(), INPUT_FRAGMENT);
     });
 
     mMessageView = findViewById(R.id.message_text);
