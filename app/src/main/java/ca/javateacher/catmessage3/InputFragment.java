@@ -64,8 +64,8 @@ public class InputFragment extends DialogFragment {
 
   private void updateMessage() {
     if (mInputListener != null) {
-      String message = getResources().getStringArray(R.array.cat_messages)[mMessageInd];
-      mInputListener.updateMessage(message);
+      String[] messages = getResources().getStringArray(R.array.cat_messages);
+      mInputListener.updateMessage(messages[mMessageInd]);
     }
   }
 }
