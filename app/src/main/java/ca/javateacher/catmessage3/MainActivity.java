@@ -2,6 +2,8 @@
 package ca.javateacher.catmessage3;
 
 import android.os.Bundle;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import android.view.Menu;
@@ -46,7 +48,7 @@ public class MainActivity extends AppCompatActivity implements InputFragment.Inp
   }
 
   @Override
-  protected void onSaveInstanceState(Bundle outState) {
+  protected void onSaveInstanceState(@NonNull Bundle outState) {
     super.onSaveInstanceState(outState);
     outState.putString(MESSAGE, mMessageText);
   }
