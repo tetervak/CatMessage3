@@ -4,7 +4,6 @@ package ca.javateacher.catmessage3;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
@@ -28,11 +27,8 @@ public class MainActivity extends AppCompatActivity implements InputFragment.Inp
     Toolbar toolbar = findViewById(R.id.toolbar);
     setSupportActionBar(toolbar);
 
-    Button getButton = findViewById(R.id.get_button);
-    getButton.setOnClickListener(v -> {
-      InputFragment inputFragment = InputFragment.newInstance();
-      inputFragment.show(getSupportFragmentManager(), INPUT_FRAGMENT);
-    });
+    Button getMessageButton = findViewById(R.id.get_message_button);
+    getMessageButton.setOnClickListener(v -> showInput());
 
     mMessageView = findViewById(R.id.message_text);
 
@@ -42,6 +38,11 @@ public class MainActivity extends AppCompatActivity implements InputFragment.Inp
     }else{
       mMessageText = getString(R.string.undefined);
     }
+  }
+
+  private void showInput() {
+    InputFragment inputFragment = InputFragment.newInstance();
+    inputFragment.show(getSupportFragmentManager(), INPUT_FRAGMENT);
   }
 
   @Override
