@@ -3,7 +3,6 @@ package ca.javateacher.catmessage3;
 
 import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -55,26 +54,18 @@ public class InputFragment extends DialogFragment {
         new AlertDialog.Builder(getActivity());
     builder.setTitle(R.string.select_message);
     builder.setSingleChoiceItems(R.array.cat_messages,
-        mMessageInd, new DialogInterface.OnClickListener() {
-          @Override
-          public void onClick(DialogInterface dialog, int which) {
-            mMessageInd = which;
-          }
-        });
+        mMessageInd, (dialog, which) -> mMessageInd = which);
 
-    builder.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-      @Override
-      public void onClick(DialogInterface dialog, int button) {
-        if (mInputListener != null) {
-          String message = getResources().getStringArray(R.array.cat_messages)[mMessageInd];
-          mInputListener.updateMessage(message);
-        }
-      }
-    });
+    builder.setPositiveButton(android.R.string.yes, (dialog, button) ->  updateMessage());
 
     builder.setNegativeButton(android.R.string.no, null);
     return builder.create(); // return the AlertDialog
   }
 
-
+  private void updateMessage() {
+    if (mInputListener != null) {
+      String message = getResources().getStringArray(R.array.cat_messages)[mMessageInd];
+      mInputListener.updateMessage(message);
+    }
+  }
 }
