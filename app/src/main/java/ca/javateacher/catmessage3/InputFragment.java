@@ -32,11 +32,11 @@ public class InputFragment extends DialogFragment {
   @Override
   public void onAttach(Context context) {
     super.onAttach(context);
-    try {
-      mInputListener = (InputListener) context;
-    } catch (ClassCastException e) {
-      throw new ClassCastException(context.toString()
-          + " must implement InputListener");
+    if(context instanceof InputListener){
+        mInputListener = (InputListener) context;
+    }else{
+        throw new RuntimeException(context.toString()
+                + " must implement InputFragment.InputListener");
     }
   }
 
