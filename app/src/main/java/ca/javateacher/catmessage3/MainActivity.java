@@ -63,11 +63,15 @@ public class MainActivity extends AppCompatActivity implements InputFragment.Inp
   @Override
   public boolean onOptionsItemSelected(MenuItem item) {
     if (item.getItemId() == R.id.about) {
-      AboutFragment aboutFragment = AboutFragment.newInstance();
-      aboutFragment.show(getSupportFragmentManager(), ABOUT_FRAGMENT);
+      showAbout();
       return true;
     }
     return super.onOptionsItemSelected(item);
+  }
+
+  private void showAbout() {
+    AboutFragment aboutFragment = AboutFragment.newInstance();
+    aboutFragment.show(getSupportFragmentManager(), ABOUT_FRAGMENT);
   }
 
   @Override
